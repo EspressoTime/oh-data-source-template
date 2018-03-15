@@ -12,7 +12,7 @@ from .tasks import xfer_to_open_humans
 # Open Humans settings
 OH_BASE_URL = 'https://www.openhumans.org'
 
-APP_BASE_URL = os.getenv('APP_BASE_URL', 'http://127.0.0.1:5000')
+APP_BASE_URL = os.getenv('APP_BASE_URL', 'https://openhumans-test.herokuapp.com')
 
 # Set up logging.
 logger = logging.getLogger(__name__)
@@ -100,6 +100,9 @@ def complete(request):
     # This creates an OpenHumansMember and associated User account.
     code = request.GET.get('code', '')
     oh_member = oh_code_to_member(code=code)
+    logger.debug('The code is: %s' % code)
+    logger.debug('The oh_member is: %s' % oh_member)
+
 
     if oh_member:
 
